@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "741289733674",
+    "firebase_url": "https://go-together-29c6f.firebaseio.com",
+    "project_id": "go-together-29c6f",
+    "storage_bucket": "go-together-29c6f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741289733674:android:5557f20a54efd584c01d53",
+        "android_client_info": {
+          "package_name": "com.gotogether"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741289733674-fngf1m9l7qunj31o5cdfknmht7hmtihk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2r-iFD0fUZkb8ejXVAEcbUUBVumBt-q4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741289733674-fngf1m9l7qunj31o5cdfknmht7hmtihk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
