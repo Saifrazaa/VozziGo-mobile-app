@@ -50,7 +50,14 @@ class HomeComponent extends React.Component {
         }}
       >
         <View style={styles.msgsWrapper}>
-          <TouchableOpacity style={styles.fabBtn}>
+          <TouchableOpacity
+            style={styles.fabBtn}
+            onPress={() =>
+              this.props.navigation.navigate("SendText", {
+                transition: "SlideFromRight",
+              })
+            }
+          >
             <Icon name="add" />
           </TouchableOpacity>
           {MessageList &&

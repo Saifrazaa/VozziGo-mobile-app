@@ -1,7 +1,17 @@
 import React from "react";
 import { Animated, Easing } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import { LoginScreen, HomeScreen, MessageDetail } from "../container";
+import {
+  LoginScreen,
+  HomeScreen,
+  MessageDetail,
+  SendText,
+  Account,
+  Groups,
+  Templates,
+  DynamicFields,
+  Keywords,
+} from "../container";
 
 import {
   CollapseExpand,
@@ -26,14 +36,17 @@ class RootStack extends React.Component {
 const Navigator = createStackNavigator(
   {
     LoginScreen,
-    HomeScreen: {
-      screen: HomeScreen,
-      headerName: "Home",
-    },
+    HomeScreen,
     MessageDetail,
+    SendText,
+    Account,
+    Groups,
+    Templates,
+    DynamicFields,
+    Keywords,
   },
   {
-    initialRouteName: "MessageDetail",
+    initialRouteName: "LoginScreen",
     transitionConfig: () => {
       return {
         transitionSpec: {

@@ -7,31 +7,31 @@ export default class SideBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 1,
+      value: 0,
       menues: [
         {
           text: "Account",
-          screenName: "HomeScreen",
+          screenName: "Account",
           value: 1,
         },
         {
           text: "Groups",
-          screenName: "Profile",
+          screenName: "Groups",
           value: 2,
         },
         {
           text: "Templates",
-          screenName: "UpcomingRides",
+          screenName: "Templates",
           value: 3,
         },
         {
           text: "My Keywords",
-          screenName: "History",
+          screenName: "Keywords",
           value: 4,
         },
         {
           text: "Dynamic Fields",
-          screenName: "Contact",
+          screenName: "DynamicFields",
           value: 5,
         },
       ],

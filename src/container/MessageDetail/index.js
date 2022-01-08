@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, View, StyleSheet, Picker, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Picker,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import Icon from "react-native-vector-icons/SimpleLineIcons";
 
 class MessageDetails extends React.Component {
@@ -7,12 +14,21 @@ class MessageDetails extends React.Component {
     super();
     this.state = {
       selectedValue: "ST",
-      template:
-        "Thanks for reaching out {name} You can find those packs here https://getvozzi.com?id=123",
+      template: "",
     };
   }
   render() {
     const templateArray = [
+      {
+        template:
+          "Thanks for reaching out {name} You can find those packs here https://getvozzi.com?id=123 Thanks for reaching out {name} You can find those packs here https://getvozzi.com?id=123",
+        value: "template-1",
+      },
+      {
+        template:
+          "Thanks for reaching out {Vozzi Go Admin} You can find those packs here https://getvozzi.com?id=124",
+        value: "template-2",
+      },
       {
         template:
           "Thanks for reaching out {name} You can find those packs here https://getvozzi.com?id=123",
@@ -35,9 +51,15 @@ class MessageDetails extends React.Component {
       >
         <View style={styles.innerWrapper}>
           <View style={styles.respondHeader}>
-            <View>
+            <TouchableOpacity
+              onPress={() =>
+                this.props.navigation.navigate("HomeScreen", {
+                  transition: "SlideFromRight",
+                })
+              }
+            >
               <Icon name="action-undo" color="#afff00" size={60} />
-            </View>
+            </TouchableOpacity>
             <View style={styles.respondHeaderText}>
               <Text
                 style={{ fontSize: 24, color: "#ffffff", textAlign: "center" }}
@@ -74,7 +96,15 @@ class MessageDetails extends React.Component {
             </View>
           </View>
           <View style={styles.selectedTemplate}>
-            <Text style={styles.templateText}>{this.state.template}</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.setState({ template: text })}
+              value={this.state.template}
+              placeholder="Enter Message or Select Template"
+              placeholderTextColor="#aba9a9"
+              numberOfLines={4}
+              multiline={true}
+            />
           </View>
           <View style={styles.bottomRespond}>
             <View style={styles.pickerStyle}>
@@ -84,11 +114,14 @@ class MessageDetails extends React.Component {
                 onValueChange={(itemValue, itemIndex) =>
                   this.setState({
                     selectedValue: itemValue,
-                    template: templateArray[itemIndex - 1].template,
+                    template:
+                      itemValue !== "ST"
+                        ? templateArray[itemIndex - 1].template
+                        : "",
                   })
                 }
               >
-                <Picker.Item label="Select Template" value="ST"/>
+                <Picker.Item label="Select Template" value="ST" />
                 {templateArray &&
                   templateArray.map((template, index) => {
                     return (
@@ -174,6 +207,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#afff00",
     justifyContent: "center",
     alignItems: "center",
+  },
+  input: {
+    height: "100%",
+    fontSize: 20,
+    color: "#ffffff",
+    textAlignVertical: "top",
   },
 });
 export default MessageDetails;
