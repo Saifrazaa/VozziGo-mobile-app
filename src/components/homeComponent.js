@@ -68,7 +68,7 @@ class HomeComponent extends React.Component {
                   key={index}
                   style={[
                     styles.msgListItem,
-                    { backgroundColor: msg.read ? "#e9e7e7" : "#ffffff" },
+                    { backgroundColor: msg.read ? "#dfdfdf" : "#ffffff" },
                   ]}
                   onPress={() =>
                     this.props.navigation.navigate("MessageDetail", {
@@ -98,7 +98,13 @@ class HomeComponent extends React.Component {
                       </Text>
                     </View>
                   </View>
-                  <Text style={styles.msgText} numberOfLines={1}>
+                  <Text
+                    style={[
+                      styles.msgText,
+                      { fontWeight: msg.read ? "normal" : "500" },
+                    ]}
+                    numberOfLines={1}
+                  >
                     {msg.msg}
                   </Text>
                 </TouchableOpacity>

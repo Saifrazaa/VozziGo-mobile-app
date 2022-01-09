@@ -46,7 +46,7 @@ const Navigator = createStackNavigator(
     Keywords,
   },
   {
-    initialRouteName: "Groups",
+    initialRouteName: "LoginScreen",
     transitionConfig: () => {
       return {
         transitionSpec: {
