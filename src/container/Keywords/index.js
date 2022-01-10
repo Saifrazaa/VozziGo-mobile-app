@@ -12,6 +12,7 @@ import {
   CollapseBody,
 } from "accordion-collapse-react-native";
 import Icon from "react-native-vector-icons/SimpleLineIcons";
+import Loader from "../../components/loader";
 
 class Keywords extends React.Component {
   constructor() {
@@ -39,8 +40,18 @@ class Keywords extends React.Component {
             "Thank you for your interest in hats, here is a link to our section we think you will love! https://getvozzi.com/indes.php?id=123123",
         },
       ],
+      loader: false,
     };
   }
+  loaderCom = () => {
+    this.setState({ loader: true });
+    setTimeout(() => {
+      this.setState({ loader: false });
+      this.props.navigation.navigate("HomeScreen", {
+        transition: "SlideFromTop",
+      });
+    }, 1500);
+  };
   render() {
     return (
       <View
@@ -49,15 +60,11 @@ class Keywords extends React.Component {
           backgroundColor: "#0d0d0d",
         }}
       >
+        {this.state.loader && <Loader />}
+
         <View style={styles.innerWrapper}>
           <View style={styles.respondHeader}>
-            <TouchableOpacity
-              onPress={() =>
-                this.props.navigation.navigate("HomeScreen", {
-                  transition: "SlideFromRight",
-                })
-              }
-            >
+            <TouchableOpacity onPress={this.loaderCom.bind(this)}>
               <Icon name="action-undo" color="#afff00" size={60} />
             </TouchableOpacity>
             <View style={styles.respondHeaderText}>

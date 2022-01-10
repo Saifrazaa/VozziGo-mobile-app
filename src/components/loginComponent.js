@@ -2,14 +2,26 @@ import React, { Component } from "react";
 import { Text, View, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { Form, Item, Input } from "native-base";
 import { Styles, screenHeight, screenWidth } from "../config";
+import Loader from "./loader";
+
 class Login extends Component {
   constructor() {
     super();
     this.state = {
       email: "",
       password: "",
+      loginLoader: false,
     };
   }
+  _login = () => {
+    this.setState({ loginLoader: true });
+    setTimeout(() => {
+      this.setState({ loginLoader: false });
+      this.props.navigation.navigate("HomeScreen", {
+        transition: "SlideFromTop",
+      });
+    }, 3000);
+  };
   render() {
     return (
       // <Container style={{height:"100%"}}>
@@ -22,6 +34,7 @@ class Login extends Component {
           flexDirection: "column",
         }}
       >
+        {this.state.loginLoader && <Loader />}
         <View
           style={{
             height: screenHeight / 7,
@@ -61,11 +74,7 @@ class Login extends Component {
               />
             </Item>
             <TouchableOpacity
-              onPress={() =>
-                this.props.navigation.navigate("HomeScreen", {
-                  transition: "SlideFromTop",
-                })
-              }
+              onPress={this._login.bind(this)}
               style={{
                 backgroundColor: "#afff00",
                 marginTop: 20,

@@ -13,6 +13,7 @@ import {
 } from "accordion-collapse-react-native";
 import Icon from "react-native-vector-icons/SimpleLineIcons";
 import DataTable, { COL_TYPES } from "react-native-datatable-component";
+import Loader from "../../components/loader";
 
 class Groups extends React.Component {
   constructor() {
@@ -252,6 +253,7 @@ class Groups extends React.Component {
           ],
         },
       ],
+      loader: false,
     };
   }
   deleteGroup = (index) => {
@@ -261,6 +263,15 @@ class Groups extends React.Component {
       groupsList,
     });
   };
+  loaderCom = () => {
+    this.setState({ loader: true });
+    setTimeout(() => {
+      this.setState({ loader: false });
+      this.props.navigation.navigate("HomeScreen", {
+        transition: "SlideFromTop",
+      });
+    }, 1500);
+  };
   render() {
     return (
       <View
@@ -269,15 +280,11 @@ class Groups extends React.Component {
           backgroundColor: "#0d0d0d",
         }}
       >
+        {this.state.loader && <Loader />}
+
         <View style={styles.innerWrapper}>
           <View style={styles.respondHeader}>
-            <TouchableOpacity
-              onPress={() =>
-                this.props.navigation.navigate("HomeScreen", {
-                  transition: "SlideFromRight",
-                })
-              }
-            >
+            <TouchableOpacity onPress={this.loaderCom.bind(this)}>
               <Icon name="action-undo" color="#afff00" size={60} />
             </TouchableOpacity>
             <View style={styles.respondHeaderText}>

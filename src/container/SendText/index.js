@@ -8,6 +8,7 @@ import {
   TextInput,
 } from "react-native";
 import Icon from "react-native-vector-icons/SimpleLineIcons";
+import Loader from "../../components/loader";
 
 class SendText extends React.Component {
   constructor() {
@@ -16,8 +17,18 @@ class SendText extends React.Component {
       selectedGroup: "SG",
       selectedTemplate: "ST",
       template: "",
+      loader: false,
     };
   }
+  loaderCom = () => {
+    this.setState({ loader: true });
+    setTimeout(() => {
+      this.setState({ loader: false });
+      this.props.navigation.navigate("HomeScreen", {
+        transition: "SlideFromTop",
+      });
+    }, 1500);
+  };
   render() {
     const templateArray = [
       {
@@ -64,15 +75,11 @@ class SendText extends React.Component {
           alignItems: "center",
         }}
       >
+        {this.state.loader && <Loader />}
+
         <View style={styles.innerWrapper}>
           <View style={styles.respondHeader}>
-            <TouchableOpacity
-              onPress={() =>
-                this.props.navigation.navigate("HomeScreen", {
-                  transition: "SlideFromRight",
-                })
-              }
-            >
+            <TouchableOpacity onPress={this.loaderCom.bind(this)}>
               <Icon name="action-undo" color="#afff00" size={60} />
             </TouchableOpacity>
             <View style={styles.respondHeaderText}>
@@ -116,7 +123,7 @@ class SendText extends React.Component {
                   template:
                     itemValue !== "ST"
                       ? templateArray[itemIndex - 1].template
-                      : '',
+                      : "",
                 })
               }
             >
@@ -144,7 +151,18 @@ class SendText extends React.Component {
               multiline={true}
             />
           </View>
-          <TouchableOpacity style={styles.sendBtnStyle}>
+          <TouchableOpacity
+            style={styles.sendBtnStyle}
+            onPress={() => {
+              this.setState({ loader: true });
+              setTimeout(() => {
+                this.setState({ loader: false });
+                this.props.navigation.navigate("HomeScreen", {
+                  transition: "SlideFromRight",
+                });
+              }, 1500);
+            }}
+          >
             <Text style={{ fontSize: 18, fontWeight: "500" }}>SEND</Text>
           </TouchableOpacity>
         </View>

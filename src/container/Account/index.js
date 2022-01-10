@@ -1,21 +1,10 @@
 import React from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  TextInput,
-} from "react-native";
-import {
-  Collapse,
-  CollapseHeader,
-  CollapseBody,
-} from "accordion-collapse-react-native";
-import { Form, Item, Input } from "native-base";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Item, Input } from "native-base";
 
 import Icon from "react-native-vector-icons/SimpleLineIcons";
 import { Styles, screenHeight } from "../../config";
+import Loader from "../../components/loader";
 
 class Account extends React.Component {
   constructor() {
@@ -24,8 +13,18 @@ class Account extends React.Component {
       oldPassword: "",
       newPassword: "",
       confirmPassword: "",
+      loader: false,
     };
   }
+  loaderCom = () => {
+    this.setState({ loader: true });
+    setTimeout(() => {
+      this.setState({ loader: false });
+      this.props.navigation.navigate("HomeScreen", {
+        transition: "SlideFromTop",
+      });
+    }, 1500);
+  };
   render() {
     return (
       <View
@@ -34,15 +33,10 @@ class Account extends React.Component {
           backgroundColor: "#0d0d0d",
         }}
       >
+        {this.state.loader && <Loader />}
         <View style={styles.innerWrapper}>
           <View style={styles.respondHeader}>
-            <TouchableOpacity
-              onPress={() =>
-                this.props.navigation.navigate("HomeScreen", {
-                  transition: "SlideFromRight",
-                })
-              }
-            >
+            <TouchableOpacity onPress={this.loaderCom.bind(this)}>
               <Icon name="action-undo" color="#afff00" size={60} />
             </TouchableOpacity>
             <View style={styles.respondHeaderText}>
@@ -113,6 +107,15 @@ class Account extends React.Component {
             <Text
               style={{
                 color: "#000000",
+              }}
+              onPress={() => {
+                this.setState({ loader: true });
+                setTimeout(() => {
+                  this.setState({ loader: false });
+                  this.props.navigation.navigate("HomeScreen", {
+                    transition: "SlideFromRight",
+                  });
+                }, 1500);
               }}
             >
               Change Password
