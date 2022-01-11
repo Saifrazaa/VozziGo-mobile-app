@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Icon } from "native-base";
-import Loader from "./loader";
 
 const MessageList = [
   {
@@ -42,22 +41,6 @@ const MessageList = [
 ];
 
 class HomeComponent extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      loader: false,
-    };
-  }
-  loaderCom = () => {
-    this.setState({ loader: true });
-    setTimeout(() => {
-      this.setState({ loader: false });
-      this.props.navigation.navigate("HomeScreen", {
-        transition: "SlideFromTop",
-      });
-    }, 1500);
-  };
-
   render() {
     return (
       <View
@@ -67,19 +50,14 @@ class HomeComponent extends React.Component {
           justifyContent: "center",
         }}
       >
-        {this.state.loader && <Loader />}
 
         <View style={styles.msgsWrapper}>
           <TouchableOpacity
             style={styles.fabBtn}
             onPress={() => {
-              this.setState({ loader: true });
-              setTimeout(() => {
-                this.setState({ loader: false });
-                this.props.navigation.navigate("SendText", {
-                  transition: "SlideFromRight",
-                });
-              }, 1500);
+              this.props.navigation.navigate("SendText", {
+                transition: "SlideFromRight",
+              });
             }}
           >
             <Icon name="add" />
@@ -95,13 +73,9 @@ class HomeComponent extends React.Component {
                     { backgroundColor: msg.read ? "#dfdfdf" : "#ffffff" },
                   ]}
                   onPress={() => {
-                    this.setState({ loader: true });
-                    setTimeout(() => {
-                      this.setState({ loader: false });
-                      this.props.navigation.navigate("MessageDetail", {
-                        transition: "SlideFromRight",
-                      });
-                    }, 1500);
+                    this.props.navigation.navigate("MessageDetail", {
+                      transition: "SlideFromRight",
+                    });
                   }}
                 >
                   <View style={styles.msgInfo}>

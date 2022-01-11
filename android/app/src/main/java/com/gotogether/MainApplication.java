@@ -3,7 +3,6 @@ package com.gotogether;
 import android.support.multidex.MultiDexApplication;
 import android.os.Bundle;
 import com.facebook.react.ReactApplication;
-import com.brentvatne.react.ReactVideoPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 import io.invertase.firebase.RNFirebasePackage;
@@ -36,7 +35,6 @@ public class MainApplication extends MultiDexApplication  implements ReactApplic
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new ReactVideoPackage(),
             new SplashScreenReactPackage(),
             new RNFirebasePackage(),
             new ImagePickerPackage(),

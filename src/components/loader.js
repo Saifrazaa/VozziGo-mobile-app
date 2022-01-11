@@ -1,16 +1,13 @@
 import React from "react";
-import Video from "react-native-video";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 
 class Loader extends React.Component {
   render() {
     return (
       <View style={styles.wrapper}>
-        <Video
-          style={styles.loader}
-          repeat
-          resizeMode="cover"
-          source={require("../assets/images/loader.mp4")} // Can be a URL or a local file.
+        <Image
+          source={require("../assets/images/loader.gif")}
+          style={{ width: 150, height: 150 }}
         />
       </View>
     );
@@ -25,7 +22,7 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     zIndex: 999,
-    backgroundColor: "rgba(0,0,0,0.8)",
+    backgroundColor: "#000000",
   },
   loader: {
     height: 150,

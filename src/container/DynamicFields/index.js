@@ -12,7 +12,6 @@ import {
   CollapseBody,
 } from "accordion-collapse-react-native";
 import Icon from "react-native-vector-icons/SimpleLineIcons";
-import Loader from "../../components/loader";
 
 class DynamicFields extends React.Component {
   constructor() {
@@ -32,17 +31,12 @@ class DynamicFields extends React.Component {
           detail: "contact name on file",
         },
       ],
-      loader: false,
     };
   }
   loaderCom = () => {
-    this.setState({ loader: true });
-    setTimeout(() => {
-      this.setState({ loader: false });
-      this.props.navigation.navigate("HomeScreen", {
-        transition: "SlideFromTop",
-      });
-    }, 1500);
+    this.props.navigation.navigate("HomeScreen", {
+      transition: "SlideFromTop",
+    });
   };
   render() {
     return (
@@ -52,7 +46,6 @@ class DynamicFields extends React.Component {
           backgroundColor: "#0d0d0d",
         }}
       >
-        {this.state.loader && <Loader />}
         <View style={styles.innerWrapper}>
           <View style={styles.respondHeader}>
             <TouchableOpacity onPress={this.loaderCom.bind(this)}>

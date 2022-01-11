@@ -13,7 +13,6 @@ import {
   CollapseBody,
 } from "accordion-collapse-react-native";
 import Icon from "react-native-vector-icons/SimpleLineIcons";
-import Loader from "../../components/loader";
 
 class Templates extends React.Component {
   constructor() {
@@ -96,17 +95,12 @@ class Templates extends React.Component {
             "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
         },
       ],
-      loader: false,
     };
   }
   loaderCom = () => {
-    this.setState({ loader: true });
-    setTimeout(() => {
-      this.setState({ loader: false });
-      this.props.navigation.navigate("HomeScreen", {
-        transition: "SlideFromTop",
-      });
-    }, 1500);
+    this.props.navigation.navigate("HomeScreen", {
+      transition: "SlideFromTop",
+    });
   };
   deleteTemplate = (index) => {
     var templates = this.state.templates;

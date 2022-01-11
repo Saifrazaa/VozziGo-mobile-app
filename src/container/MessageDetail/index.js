@@ -8,7 +8,6 @@ import {
   TextInput,
 } from "react-native";
 import Icon from "react-native-vector-icons/SimpleLineIcons";
-import Loader from "../../components/loader";
 
 class MessageDetails extends React.Component {
   constructor() {
@@ -20,13 +19,9 @@ class MessageDetails extends React.Component {
     };
   }
   loaderCom = () => {
-    this.setState({ loader: true });
-    setTimeout(() => {
-      this.setState({ loader: false });
-      this.props.navigation.navigate("HomeScreen", {
-        transition: "SlideFromTop",
-      });
-    }, 1500);
+    this.props.navigation.navigate("HomeScreen", {
+      transition: "SlideFromTop",
+    });
   };
   render() {
     const templateArray = [
@@ -60,8 +55,6 @@ class MessageDetails extends React.Component {
           alignItems: "center",
         }}
       >
-        {this.state.loader && <Loader />}
-
         <View style={styles.innerWrapper}>
           <View style={styles.respondHeader}>
             <TouchableOpacity onPress={this.loaderCom.bind(this)}>
@@ -144,13 +137,9 @@ class MessageDetails extends React.Component {
             <TouchableOpacity
               style={styles.sendBtnStyle}
               onPress={() => {
-                this.setState({ loader: true });
-                setTimeout(() => {
-                  this.setState({ loader: false });
-                  this.props.navigation.navigate("HomeScreen", {
-                    transition: "SlideFromRight",
-                  });
-                }, 1500);
+                this.props.navigation.navigate("HomeScreen", {
+                  transition: "SlideFromRight",
+                });
               }}
             >
               <Text style={{ fontSize: 18, fontWeight: "500" }}>SEND</Text>

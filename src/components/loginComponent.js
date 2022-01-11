@@ -16,15 +16,14 @@ class Login extends Component {
   _login = () => {
     this.setState({ loginLoader: true });
     setTimeout(() => {
-      this.setState({ loginLoader: false });
       this.props.navigation.navigate("HomeScreen", {
-        transition: "SlideFromTop",
+        transition: "SlideFromRight",
       });
+      this.setState({ loginLoader: false });
     }, 3000);
   };
   render() {
     return (
-      // <Container style={{height:"100%"}}>
       <View
         style={{
           flex: 1,

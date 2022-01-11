@@ -4,7 +4,6 @@ import { Item, Input } from "native-base";
 
 import Icon from "react-native-vector-icons/SimpleLineIcons";
 import { Styles, screenHeight } from "../../config";
-import Loader from "../../components/loader";
 
 class Account extends React.Component {
   constructor() {
@@ -13,17 +12,12 @@ class Account extends React.Component {
       oldPassword: "",
       newPassword: "",
       confirmPassword: "",
-      loader: false,
     };
   }
   loaderCom = () => {
-    this.setState({ loader: true });
-    setTimeout(() => {
-      this.setState({ loader: false });
-      this.props.navigation.navigate("HomeScreen", {
-        transition: "SlideFromTop",
-      });
-    }, 1500);
+    this.props.navigation.navigate("HomeScreen", {
+      transition: "SlideFromTop",
+    });
   };
   render() {
     return (
@@ -33,7 +27,6 @@ class Account extends React.Component {
           backgroundColor: "#0d0d0d",
         }}
       >
-        {this.state.loader && <Loader />}
         <View style={styles.innerWrapper}>
           <View style={styles.respondHeader}>
             <TouchableOpacity onPress={this.loaderCom.bind(this)}>
